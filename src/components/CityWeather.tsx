@@ -20,13 +20,18 @@ const CityWeather:FC=()=>{
     
     const [list,setList]=useState<CityProps[]>(cityList);
 
-    const deleteCity=(index:number)=>{
-      const newCityes=(list.filter((city,i)=>{
-        return i!==index;
+    const setOnTop=(index:number)=>{
+        const newList=(list.filter((city,i)=>{return i===index}));
+        list.map((city,i)=> i!==index ? newList.push(city):city)
+        setList(newList);
+    };
 
-      }));
+    const deleteCity=(index:number)=>{
+      const newCityes=(list.filter((city,i)=>{return i!==index;}));
       setList(newCityes);
     };
+
+
     return(
         
             <table>
@@ -47,7 +52,8 @@ const CityWeather:FC=()=>{
                         humidity={city.humidity}
                         />
                         <td>
-                            <button onClick={()=>deleteCity(index)}>obrisi grad</button>
+                            <button id="delete" onClick={()=>deleteCity(index)}>obrisi grad</button>
+                            <button id="top" onClick={()=>setOnTop(index)}>postavi na vrh</button>
                         </td>
                      </tr>    
                     ))}
