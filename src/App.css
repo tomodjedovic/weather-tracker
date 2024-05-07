@@ -8,14 +8,16 @@ td{
 }
 
 
-.App {
+.cities {
   display: flex;
   justify-content: center;
+  
 }
-table {
+#cw {
   display: grid;
   grid-template-columns: 5,1fr;
 }
+
 
 button {
   width: 100px;
